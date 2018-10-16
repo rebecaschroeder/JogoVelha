@@ -64,9 +64,7 @@ public class Board {
             if( (Board[line][0] + Board[line][1] + Board[line][2]) == 3)
                 return 1;
         }
-        
         return 0;
-                
     }
     
     public int checkColumns(){
@@ -95,6 +93,38 @@ public class Board {
         return 0;
     }
     
+    public int countLine(int line) {
+        return (Board[line][0] + Board[line][1] + Board[line][2]);
+    } 
+    
+    public boolean lineEmpty(int line) {
+        return (Board[line][0] == 0 && Board[line][1] == 0) || (Board[line][1] == 0 && Board[line][2] == 0) || (Board[line][0] == 0 && Board[line][2] == 0);
+    }
+    
+    public int countColumn(int column) {
+        return (Board[0][column] + Board[1][column] + Board[2][column]);
+    }    
+    
+    public boolean columnEmpty(int column) {
+        return (Board[0][column] == 0 && Board[1][column] == 0) || (Board[1][column] == 0 && Board[2][column] == 0) || (Board[0][column] == 0 && Board[2][column] == 0);
+    }        
+    
+    public int countMainDiagonal() {
+        return (Board[0][0] + Board[1][1] + Board[2][2]);
+    }
+    
+    public boolean mainDiagnoalEmpty() {
+        return (Board[0][0] == 0 && Board[1][1] == 0) || (Board[1][1] == 0 && Board[2][2] == 0) || (Board[0][0] == 0 && Board[2][2] == 0);
+    }
+    
+    public int countSecondDiagonal() {
+        return (Board[0][2] + Board[1][1] + Board[2][0]);
+    }
+    
+    public boolean secondDiagnoalEmpty() {
+        return (Board[0][2] == 0 && Board[1][1] == 0) || (Board[1][1] == 0 && Board[2][0] == 0) || (Board[0][2] == 0 && Board[2][0] == 0);
+    }    
+    
     public boolean fullBoard(){
         for(int line=0 ; line<3 ; line++)
             for(int column=0 ; column<3 ; column++)
@@ -102,4 +132,5 @@ public class Board {
                     return false;
         return true;
     }
+    
 }

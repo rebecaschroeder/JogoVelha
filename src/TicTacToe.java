@@ -62,6 +62,10 @@ public class TicTacToe {
     public boolean Play(){
         board.showBoard();
         if(won() == 0 ){
+            if(checkDraw()) {
+                System.out.println("\nEMPATE!!");
+                return false;
+            }
             System.out.println("----------------------");
             System.out.println("\nTurn "+turn);
             System.out.println("It's turn of Player " + who() );
@@ -114,6 +118,28 @@ public class TicTacToe {
             return -1;
         
         return 0;
+    }
+    
+    public boolean checkDraw() {
+        int draw = 0;
+        for(int i=0 ; (i<3 && draw <=1) ; i++){
+            draw = (board.lineEmpty(i))?draw+1:draw;
+            draw = (board.columnEmpty(i))?draw+1:draw;
+
+            int lin = board.countLine(i);
+            int col = board.countColumn(i);
+            if (lin > 1 || lin < -1)
+                draw++;
+            if (col > 1 || col < -1)
+                draw++;
+        }
+        if (board.mainDiagnoalEmpty() || board.secondDiagnoalEmpty())
+            draw++;
+        
+        draw = (board.countMainDiagonal() > 1 || board.countMainDiagonal() < -1)?draw+1:draw;
+        draw = (board.countSecondDiagonal() > 1 || board.countSecondDiagonal() < -1)?draw+1:draw;
+        
+        return (draw <= 1);
     }
     
     public static void main(String args[]) {
